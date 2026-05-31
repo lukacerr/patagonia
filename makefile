@@ -19,7 +19,7 @@ web-build:
 	cd web && bun run build
 
 test:
-	uv run --dev pytest -x
+	uv run --dev pytest -s -x
 
 check:
 	uv run ruff check --fix --unsafe-fixes && uv run basedpyright

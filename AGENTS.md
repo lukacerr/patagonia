@@ -11,14 +11,31 @@ El foco del challenge es planificacion, ejecucion, manejo de errores, trazabilid
 ## Stack Y Restricciones
 
 - Backend: Python, FastAPI, LangChain, LangGraph, Pydantic y Typer.
+- Tool responses: usar strings en formato TOON con `python-toon` para entregar resultados compactos y faciles de consumir por agentes.
 - LLM provider: Novita AI via API compatible con OpenAI.
-- Planner y summary: `deepseek/deepseek-v4-flash`.
+- Planner y summary: `openai/gpt-oss-120b`.
 - Executor: `zai-org/glm-5.1`.
 - Web: Astro estatico, sin SSR ni islands, deployable en Cloudflare Pages.
 - API publica esperada: `https://patagonia.luka.software`.
 - Usar async de punta a punta cuando las librerias lo permitan.
 - Todas las integraciones externas deben ser mocks locales; no llamar APIs cloud reales.
 - No filtrar secretos del `.env` en logs, errores, trazas, SSE ni reportes.
+
+## Arquitectura Acordada
+
+La estructura principal queda definida asi:
+
+- `app/agents/planner.py`: system prompt, inicializacion y funcion async `run_planner_agent(...)` con return type especifico.
+- `app/agents/executor.py`: system prompt, inicializacion y funcion async `run_executor_agent(...)` con return type especifico.
+- `app/agents/summary.py`: system prompt, inicializacion y funcion async `run_summary_agent(...)` con return type especifico.
+- `app/tools/`: tools mockeadas simples, decoradas con `@tool` de LangChain, con descripcion clara e inputs tipados con Pydantic.
+- `app/tools/__init__.py`: exporta `all_tools = [...]` para bindear facilmente en el executor y metadata simple de tools para que el planner conozca nombres, descripciones y schemas sin poder ejecutarlas.
+- `app/graph.py`: contiene el `TypedDict` del estado, la logica de LangGraph y exporta el grafo.
+- `app/main.py`: adaptador FastAPI delgado que importa el grafo y expone `POST /json` y `POST /sse`.
+- `cli.py`: adaptador Typer delgado que importa el grafo y devuelve lo mismo que `POST /json`.
+- `tests/`: escenarios ejecutables con `pytest` y `pytest-asyncio`; al inicio sirven para imprimir outputs y evaluar calidad manualmente, no para bloquear con asserts fuertes.
+
+Mantener nombres Python en `snake_case`. Evitar introducir capas adicionales si no reducen codigo o complejidad real.
 
 ## Flujo Del Grafo
 
@@ -120,6 +137,10 @@ Ejemplos de capacidades:
 
 Los mocks pueden tener fallos capciosos o aleatorios para demo manual, pero los tests deben poder forzar resultados deterministas mediante seed, escenario o inyeccion simple de dependencias.
 
+Las tools deben importar el decorator oficial de LangChain, por ejemplo `from langchain_core.tools import tool`. Evitar wrappers propios salvo que agreguen valor real.
+
+Las tools deben devolver `str` en formato TOON, no dicts Python crudos. Mantener un envelope estable dentro del TOON: `ok`, `message`, `resource`, `details` para exito; `ok` y `error` para fallos. Documentar en la docstring que `resource.type` y `resource.name` pueden usarse para encadenar tools.
+
 ## Escenarios Obligatorios
 
 Estos escenarios deben quedar cubiertos mas adelante con `pytest` y `pytest-asyncio`.
@@ -128,6 +149,8 @@ Estos escenarios deben quedar cubiertos mas adelante con `pytest` y `pytest-asyn
 2. Falta de informacion: "Deploya una nueva base de datos para el equipo de Data Science, por favor."
 3. Falla de integracion: "Habilita el acceso VPN para el nuevo developer y agregalo al grupo de seguridad 'backend-devs'."
 4. Informacion erronea: "Agrega la ip 123.123.123.123 al firewall del S3 'mi-app'."
+
+Los tests iniciales pueden imprimir outputs para evaluacion manual usando `pytest -s`. Evitar asserts fuertes hasta que la calidad de las respuestas este estabilizada, pero conservar determinismo suficiente para reproducir escenarios.
 
 ## Criterios De Implementacion
 
@@ -138,6 +161,9 @@ Estos escenarios deben quedar cubiertos mas adelante con `pytest` y `pytest-asyn
 - Los TODOs deben poder verse en la web mientras se ejecutan.
 - La web debe ser estatica y consumir la API remota `https://patagonia.luka.software`.
 - El README corto se escribira hacia el final, cuando la implementacion este cerrada.
+- Si `basedpyright` falla por warnings claramente originados en typings externos de librerias, preferir configurar el warning en `pyproject.toml` antes que crear wrappers o casts artificiales en codigo de negocio.
+- Evitar clientes async globales de LLM a nivel modulo; crear modelos por llamada o mediante factory para no atarlos al event loop de pytest/FastAPI.
+- Despues de cambios o correcciones relevantes, evaluar si `AGENTS.md` deberia actualizarse con una nueva regla aprendida para futuras iteraciones.
 
 ## Verificacion
 
