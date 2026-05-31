@@ -1,15 +1,15 @@
 # IT Patagonia x Luka Cerrutti - GenAI task
 
 <p align="center">
-  <img src="assets/it-patagonia-logo.png" alt="IT Patagonia" height="72" />
+  <img src="assets/it-patagonia-logo.png" alt="IT Patagonia" height="72" style="vertical-align: middle;" />
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="assets/lc-favicon.ico" alt="Luka Cerrutti" height="72" />
+  <img src="assets/lc-favicon.ico" alt="Luka Cerrutti" height="72" style="vertical-align: middle;" />
 </p>
 
 Este proyecto implementa un orquestador agentico para un **Ingeniero DevOps Virtual**. Recibe pedidos en lenguaje natural, interpreta la intencion, planifica pasos seguros, ejecuta acciones simuladas con tools mockeadas y devuelve una traza auditable con estado final, TODOs, errores y recomendacion.
 
 > [!IMPORTANT]
-> **Recorte de scope**
+> **Recorte de scope:**
 > Como `definicion.pdf` dejaba abierta la eleccion de dominio y no especificaba integraciones concretas, el alcance se acoto a un caso DevOps/cloud. El objetivo no es construir un chatbot generico ni provisionar infraestructura real, sino demostrar planificacion, ejecucion, retries, trazabilidad y comunicacion sobre un dominio tecnico claro.
 
 ## Arquitectura agentica
@@ -17,7 +17,7 @@ Este proyecto implementa un orquestador agentico para un **Ingeniero DevOps Virt
 El flujo esta compuesto por tres agentes principales: `plannerAgent`, `executorAgent` y `summaryAgent`. LangGraph coordina el ciclo planificar, ejecutar, observar y resumir, cortando antes de ejecutar cuando faltan datos o cuando el pedido no es valido.
 
 ```mermaid
-flowchart TD
+flowchart LR
     START([__start__]) --> planner[planner]
     planner --> route{plan ejecutable?}
     route -->|si| executor[executor]
@@ -32,7 +32,7 @@ flowchart TD
 - **summary:** sintetiza el resultado final con estado, issues, TODOs, recomendacion y traza.
 
 > [!NOTE]
-> **Las tools son mockeadas**
+> **Las tools son mockeadas:**
 > El proyecto registra 25 tools DevOps simuladas, incluyendo creacion de buckets, bases de datos, VPN, firewall, IAM, backups, health checks, Kubernetes y Terraform. Todas devuelven respuestas locales en TOON, pueden modelar errores recuperables o definitivos, y el executor debe decidir retries o corte de ejecucion segun el resultado.
 
 ### Arquitectura de codigo
@@ -59,15 +59,31 @@ Las integraciones externas hoy son mocks locales, utiles para demostrar el flujo
 ## Como ejecutar
 
 > [!TIP]
-> **Web deployada**
+> **Web deployada:**
 > La interfaz web esta disponible en https://patagonia.luka.software y la documentacion interactiva de la API en https://api.patagonia.luka.software/docs. Es la forma recomendada de probar el proyecto sin compartir API keys ni configurar entorno local. La API expone `POST /json` para obtener el reporte final y `POST /sse` para consumir eventos en tiempo real.
 
-Para ejecutar localmente se puede usar la API FastAPI o la CLI. En ambos casos hace falta una API key de Novita y conviene revisar el `makefile` para ver los comandos disponibles.
+Para ejecutar localmente se puede usar la CLI, la API FastAPI o la API junto con la web Astro. En todos los casos hace falta una API key de Novita y conviene revisar el `makefile` para ver los comandos disponibles.
 
-1. Instalar dependencias de sistema: `uv` para Python y `bun` para la web.
+1. Instalar dependencias de sistema: `uv` para Python. Si se va a usar la web, instalar tambien `bun`.
 2. Instalar dependencias del proyecto con `make install`.
 3. Crear `.env` desde `.env.example` y completar al menos `NOVITA_API_KEY`. Opcionalmente completar `LANGSMITH_API_KEY` si se quiere tracing en LangSmith.
-4. Levantar la API con `make api`.
-5. Ejecutar la CLI con `make cli PROMPT="Crear un bucket S3 privado para staging"`.
-6. Levantar la web local con `make web` si se quiere probar la interfaz Astro contra la API local.
-7. Ejecutar verificaciones con `make check`.
+
+Para usar la CLI:
+
+1. Ejecutar `make cli PROMPT="Crear un bucket S3 privado para staging"`.
+
+Para usar solo la API:
+
+1. Levantar la API con `make api`.
+2. Abrir la documentacion local en `http://localhost:8000/docs`.
+3. Probar `POST /json` para respuesta final o `POST /sse` para stream de eventos.
+
+Para usar API + web local:
+
+1. Levantar la API con `make api`.
+2. En otra terminal, levantar la web con `make web`.
+3. Abrir la URL local que imprime Astro y probar el flujo desde la interfaz.
+
+Para verificar el proyecto:
+
+1. Ejecutar `make check`.
