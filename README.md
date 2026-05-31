@@ -62,6 +62,8 @@ Las integraciones externas hoy son mocks locales, utiles para demostrar el flujo
 > **Web deployada:**
 > La interfaz web esta disponible en https://patagonia.luka.software y la documentacion interactiva de la API en https://api.patagonia.luka.software/docs. Es la forma recomendada de probar el proyecto sin compartir API keys ni configurar entorno local. La API expone `POST /json` para obtener el reporte final y `POST /sse` para consumir eventos en tiempo real.
 
+**Nota general:** Novita está un poco unreliable y a veces da error al usar structured ouputs con 120b. En caso de encarar este error, favor de reintentar. (Y por supuesto, en caso de llevar agentes a producción, usaremos un proveedor más confiable).
+
 Para ejecutar localmente se puede usar la CLI, la API FastAPI o la API junto con la web Astro. En todos los casos hace falta una API key de Novita y conviene revisar el `makefile` para ver los comandos disponibles.
 
 1. Instalar dependencias de sistema: `uv` para Python. Si se va a usar la web, instalar tambien `bun`.
