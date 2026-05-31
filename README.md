@@ -1,38 +1,73 @@
 # IT Patagonia x Luka Cerrutti - GenAI task
 
-// Poner aca los logos de /assets, uno al lado del otro horizontalmente
+<p align="center">
+  <img src="assets/it-patagonia-logo.png" alt="IT Patagonia" height="72" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/lc-favicon.ico" alt="Luka Cerrutti" height="72" />
+</p>
 
-// aca dar un muy breve resumen del agente y el proyecto
+Este proyecto implementa un orquestador agentico para un **Ingeniero DevOps Virtual**. Recibe pedidos en lenguaje natural, interpreta la intencion, planifica pasos seguros, ejecuta acciones simuladas con tools mockeadas y devuelve una traza auditable con estado final, TODOs, errores y recomendacion.
 
-> [!IMPORTANT] Recorte de scope
-> // Explicar muy brevemente que como la definicion.pdf no era suficientemente especifica, se decidio cortar a un dominio especifico (devops agent)
+> [!IMPORTANT]
+> **Recorte de scope**
+> Como `definicion.pdf` dejaba abierta la eleccion de dominio y no especificaba integraciones concretas, el alcance se acoto a un caso DevOps/cloud. El objetivo no es construir un chatbot generico ni provisionar infraestructura real, sino demostrar planificacion, ejecucion, retries, trazabilidad y comunicacion sobre un dominio tecnico claro.
 
-## Arquitectura agéntica
+## Arquitectura agentica
 
-// mini parrafo explicar que consta con 3 agentes, planner executor y summary
+El flujo esta compuesto por tres agentes principales: `plannerAgent`, `executorAgent` y `summaryAgent`. LangGraph coordina el ciclo planificar, ejecutar, observar y resumir, cortando antes de ejecutar cuando faltan datos o cuando el pedido no es valido.
 
-// realizar aquí un diagrama mmd del agente (similar al que exportaria langgraph con su generate mmd)
+```mermaid
+flowchart TD
+    START([__start__]) --> planner[planner]
+    planner --> route{plan ejecutable?}
+    route -->|si| executor[executor]
+    route -->|no| summary[summary]
+    executor --> summary
+    summary --> END([__end__])
+```
 
-// bullet list que tiene *Titulo de nodo:* Breve descripcion de lo que pasa en ese nodo
+- **planner:** interpreta el pedido, valida si hay informacion suficiente y produce TODOs ejecutables.
+- **route_after_planner:** decide si el plan puede pasar a ejecucion o debe ir directo al resumen.
+- **executor:** ejecuta los TODOs en orden usando exclusivamente tools disponibles y reporta progreso incremental.
+- **summary:** sintetiza el resultado final con estado, issues, TODOs, recomendacion y traza.
 
-> [!NOTE] Las tools son mockeadas
-> // Aclarar la existencia de +20 tools pero que son todas mockeadas, con cierta chance de error y retry y blah blah blah
+> [!NOTE]
+> **Las tools son mockeadas**
+> El proyecto registra 25 tools DevOps simuladas, incluyendo creacion de buckets, bases de datos, VPN, firewall, IAM, backups, health checks, Kubernetes y Terraform. Todas devuelven respuestas locales en TOON, pueden modelar errores recuperables o definitivos, y el executor debe decidir retries o corte de ejecucion segun el resultado.
 
-### Arquitectura de código
+### Arquitectura de codigo
 
-// Bullet list explicando cada archivo y que tiene/hace muy brevemente. No entrar en detalles en la /web nni en las /tools
+- `app/agents/planner.py`: define el prompt, schema y ejecucion del agente planificador.
+- `app/agents/executor.py`: define el agente ejecutor, bindea tools y expone updates de TODOs en vivo.
+- `app/agents/summary.py`: genera el resumen final sin inventar acciones ni resultados.
+- `app/graph.py`: contiene el estado tipado, nodos LangGraph, routing, salida JSON y streaming SSE.
+- `app/main.py`: adaptador FastAPI con endpoints `POST /json`, `POST /sse` y documentacion en `/docs`.
+- `app/settings.py`: carga configuracion desde entorno y `.env`, incluyendo Novita, CORS y modo de runtime.
+- `cli.py`: adaptador Typer que ejecuta el mismo grafo y devuelve el mismo contrato JSON.
+- `app/tools/`: catalogo de tools DevOps mockeadas, sin llamadas a clouds reales.
+- `web/`: interfaz estatica Astro para probar el stream SSE y visualizar mensajes, TODOs y actividad.
+- `assets/`: logos e iconos usados por el README y la web.
 
 #### Tooling en uso
 
-// Write-up peque;o sobre que se esta usando el ecosistema de langchain, langgraph, langsmith para trazabilidad, con novita, gpt oss y glm, dar contexto en donde y porque esta seleccion.
+El backend usa el ecosistema de LangChain para modelar agentes y tools, LangGraph para orquestar el flujo con estado explicito, y LangSmith para trazabilidad cuando se configuran las variables de tracing. Novita AI se usa mediante API compatible con OpenAI: `openai/gpt-oss-120b` corre en planner y summary por su foco en interpretacion/sintesis, mientras que `zai-org/glm-5.1` corre en executor por su rol de seleccion de tools y seguimiento de pasos.
 
-##### Que mejoraría con más tiempo
+##### Que mejoraria con mas tiempo
 
-// mini writeup explicando que las tools son todas mockeadas, no hay fallback de provider de LLM y el historial actualmente se maneja via front-end
+Las integraciones externas hoy son mocks locales, utiles para demostrar el flujo pero no para operar infraestructura real. Tambien agregaria fallback de provider/modelo LLM, persistencia backend del historial y endurecimiento del contrato API para que la conversacion no dependa principalmente del estado mantenido por el frontend.
 
 ## Como ejecutar
 
-> [!TIP] Web deployada
-> // Explicar que está la interfaz web deployada en https://patagonia.luka.software y docs de la API en https://api.patagonia.luka.software/docs, pueden usar esto para probar asi no tenemos que estar compartiendo api keys, thus es altamente recomendable que lo prueben desde acá. explicar que está el endpoint de JSON o el SSE del lado de la API.
+> [!TIP]
+> **Web deployada**
+> La interfaz web esta disponible en https://patagonia.luka.software y la documentacion interactiva de la API en https://api.patagonia.luka.software/docs. Es la forma recomendada de probar el proyecto sin compartir API keys ni configurar entorno local. La API expone `POST /json` para obtener el reporte final y `POST /sse` para consumir eventos en tiempo real.
 
-// en caso de querer proceder con ejecucion, explicar que está o la API o la CLI, que requiere api key de novita, que se refieran al makefile para instalar y que creen el .env con las variables correspondientes del example, hacer una numbered list paso a paso para que puedan hacer esto si lo desean
+Para ejecutar localmente se puede usar la API FastAPI o la CLI. En ambos casos hace falta una API key de Novita y conviene revisar el `makefile` para ver los comandos disponibles.
+
+1. Instalar dependencias de sistema: `uv` para Python y `bun` para la web.
+2. Instalar dependencias del proyecto con `make install`.
+3. Crear `.env` desde `.env.example` y completar al menos `NOVITA_API_KEY`. Opcionalmente completar `LANGSMITH_API_KEY` si se quiere tracing en LangSmith.
+4. Levantar la API con `make api`.
+5. Ejecutar la CLI con `make cli PROMPT="Crear un bucket S3 privado para staging"`.
+6. Levantar la web local con `make web` si se quiere probar la interfaz Astro contra la API local.
+7. Ejecutar verificaciones con `make check`.
