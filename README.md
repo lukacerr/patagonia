@@ -1,10 +1,16 @@
 # IT Patagonia x Luka Cerrutti - GenAI task
 
-<p align="center">
-  <img src="assets/it-patagonia-logo.png" alt="IT Patagonia" height="72" style="vertical-align: middle;" />
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="assets/lc-favicon.ico" alt="Luka Cerrutti" height="72" style="vertical-align: middle;" />
-</p>
+<table align="center">
+  <tr>
+    <td valign="middle" align="center">
+      <img src="assets/it-patagonia-logo.png" alt="IT Patagonia" height="72" />
+    </td>
+    <td width="28"></td>
+    <td valign="middle" align="center">
+      <img src="assets/lc-favicon.ico" alt="Luka Cerrutti" height="72" />
+    </td>
+  </tr>
+</table>
 
 Este proyecto implementa un orquestador agentico para un **Ingeniero DevOps Virtual**. Recibe pedidos en lenguaje natural, interpreta la intencion, planifica pasos seguros, ejecuta acciones simuladas con tools mockeadas y devuelve una traza auditable con estado final, TODOs, errores y recomendacion.
 
