@@ -4,10 +4,10 @@ import "@/styles/starwind.css";
 import { Badge } from "@/components/starwind/badge";
 import { Button } from "@/components/starwind/button";
 import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
+	Card,
+	CardContent,
+	CardHeader,
+	CardTitle,
 } from "@/components/starwind/card";
 import { Textarea } from "@/components/starwind/textarea";
 import Send from "@tabler/icons/outline/send.svg";
@@ -15,311 +15,423 @@ import Trash from "@tabler/icons/outline/trash.svg";
 ---
 
 <html lang="es" class="dark">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Patagonia DevOps Orchestrator</title>
-  </head>
-  <body>
-    <main class="min-h-dvh bg-background text-foreground">
-      <div class="fixed inset-0 -z-10 overflow-hidden bg-[radial-gradient(circle_at_14%_8%,rgba(124,58,237,.20),transparent_32rem),radial-gradient(circle_at_86%_12%,rgba(168,85,247,.14),transparent_26rem),linear-gradient(135deg,#050708_0%,#0b1014_48%,#050505_100%)]"></div>
-      <div class="mx-auto flex h-dvh w-full max-w-7xl gap-4 px-3 py-3 sm:px-5 lg:px-6">
-        <aside class="hidden min-h-0 w-80 shrink-0 flex-col gap-3 lg:flex">
-          <Card class="border-border/60 bg-card/70 shadow-2xl backdrop-blur-xl">
-            <CardHeader class="pb-3">
-              <div class="flex items-center justify-between gap-3">
-                <div>
-                  <p class="text-xs uppercase tracking-[0.28em] text-primary">Patagonia</p>
-                  <CardTitle class="mt-2 text-xl tracking-tight">DevOps Virtual</CardTitle>
-                </div>
-                <Badge id="side-status" variant="secondary">idle</Badge>
-              </div>
-            </CardHeader>
-            <CardContent class="space-y-3 text-sm text-muted-foreground">
-              <p>Orquestación agentica con planner, executor, tools mockeadas y summary auditable.</p>
-            </CardContent>
-          </Card>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Patagonia DevOps Orchestrator</title>
+	</head>
+	<body>
+		<main class="min-h-dvh bg-background text-foreground">
+			<div
+				class="fixed inset-0 -z-10 overflow-hidden bg-[radial-gradient(circle_at_14%_8%,rgba(124,58,237,.20),transparent_32rem),radial-gradient(circle_at_86%_12%,rgba(168,85,247,.14),transparent_26rem),linear-gradient(135deg,#050708_0%,#0b1014_48%,#050505_100%)]"
+			>
+			</div>
+			<div
+				class="mx-auto flex h-dvh w-full max-w-7xl gap-4 px-3 py-3 sm:px-5 lg:px-6"
+			>
+				<aside class="hidden min-h-0 w-80 shrink-0 flex-col gap-3 lg:flex">
+					<Card class="border-border/60 bg-card/70 shadow-2xl backdrop-blur-xl">
+						<CardHeader class="pb-3">
+							<div class="flex items-center justify-between gap-3">
+								<div>
+									<p class="text-xs uppercase tracking-[0.28em] text-primary">
+										Patagonia
+									</p>
+									<CardTitle class="mt-2 text-xl tracking-tight"
+										>DevOps Virtual</CardTitle
+									>
+								</div>
+								<Badge id="side-status" variant="secondary">idle</Badge>
+							</div>
+						</CardHeader>
+						<CardContent class="space-y-3 text-sm text-muted-foreground">
+							<p>
+								Orquestación agentica con planner, executor, tools mockeadas y
+								summary auditable.
+							</p>
+						</CardContent>
+					</Card>
 
-          <Card class="min-h-0 flex-1 overflow-hidden border-border/60 bg-card/70 shadow-2xl backdrop-blur-xl">
-            <CardHeader class="pb-2">
-              <CardTitle class="text-base">Actividad</CardTitle>
-            </CardHeader>
-            <CardContent class="min-h-0">
-              <div id="activity" class="activity-scroll space-y-2 text-sm">
-                <p data-empty class="rounded-xl border border-dashed border-border/70 p-3 text-muted-foreground">Los eventos del grafo aparecerán acá.</p>
-              </div>
-            </CardContent>
-          </Card>
-        </aside>
+					<Card
+						class="min-h-0 flex-1 overflow-hidden border-border/60 bg-card/70 shadow-2xl backdrop-blur-xl"
+					>
+						<CardHeader class="pb-2">
+							<CardTitle class="text-base">Actividad</CardTitle>
+						</CardHeader>
+						<CardContent class="min-h-0">
+							<div id="activity" class="activity-scroll space-y-2 text-sm">
+								<p
+									data-empty
+									class="rounded-xl border border-dashed border-border/70 p-3 text-muted-foreground"
+								>
+									Los eventos del grafo aparecerán acá.
+								</p>
+							</div>
+						</CardContent>
+					</Card>
+				</aside>
 
-        <section class="flex min-h-0 min-w-0 flex-1 flex-col rounded-[2rem] border border-border/60 bg-card/70 shadow-2xl backdrop-blur-xl">
-          <header class="shrink-0 flex items-center justify-between gap-3 border-b border-border/60 px-4 py-3 sm:px-5">
-            <div class="min-w-0">
-              <p class="text-xs uppercase tracking-[0.24em] text-muted-foreground">Ingeniero DevOps Virtual</p>
-              <h1 class="truncate text-lg font-semibold tracking-tight sm:text-2xl">Cloud ops chat</h1>
-            </div>
-            <div class="flex items-center gap-2">
-              <Badge id="status" variant="secondary">idle</Badge>
-              <Button id="clear" type="button" variant="ghost" size="icon-sm" aria-label="Limpiar chat">
-                <Trash class="size-4" />
-              </Button>
-            </div>
-          </header>
+				<section
+					class="flex min-h-0 min-w-0 flex-1 flex-col rounded-[2rem] border border-border/60 bg-card/70 shadow-2xl backdrop-blur-xl"
+				>
+					<header
+						class="shrink-0 flex items-center justify-between gap-3 border-b border-border/60 px-4 py-3 sm:px-5"
+					>
+						<div class="min-w-0">
+							<p
+								class="text-xs uppercase tracking-[0.24em] text-muted-foreground"
+							>
+								Ingeniero DevOps Virtual
+							</p>
+							<h1
+								class="truncate text-lg font-semibold tracking-tight sm:text-2xl"
+							>
+								Cloud ops chat
+							</h1>
+						</div>
+						<div class="flex items-center gap-2">
+							<Badge id="status" variant="secondary">idle</Badge>
+							<Button
+								id="clear"
+								type="button"
+								variant="ghost"
+								size="icon-sm"
+								aria-label="Limpiar chat"
+							>
+								<Trash class="size-4" />
+							</Button>
+						</div>
+					</header>
 
-          <div id="messages" class="chat-scroll min-h-0 flex-1 space-y-5 overflow-y-auto px-4 py-5 sm:px-6">
-            <div class="mx-auto max-w-2xl rounded-3xl border border-border/70 bg-background/55 p-5 text-center shadow-inner">
-              <p class="text-xs uppercase tracking-[0.24em] text-primary">Nuevo run</p>
-              <p class="mt-3 text-balance text-lg font-medium">Contame qué infraestructura o tarea DevOps querés ejecutar.</p>
-              <p class="mt-2 text-sm text-muted-foreground">El historial completo se envía al backend como mensajes LangChain y los TODOs se actualizan en vivo.</p>
-            </div>
-          </div>
+					<div
+						id="messages"
+						class="chat-scroll min-h-0 flex-1 space-y-5 overflow-y-auto px-4 py-5 sm:px-6"
+					>
+						<div
+							class="mx-auto max-w-2xl rounded-3xl border border-border/70 bg-background/55 p-5 text-center shadow-inner"
+						>
+							<p class="text-xs uppercase tracking-[0.24em] text-primary">
+								Nuevo run
+							</p>
+							<p class="mt-3 text-balance text-lg font-medium">
+								Contame qué infraestructura o tarea DevOps querés ejecutar.
+							</p>
+							<p class="mt-2 text-sm text-muted-foreground">
+								El historial completo se envía al backend como mensajes
+								LangChain y los TODOs se actualizan en vivo.
+							</p>
+						</div>
+					</div>
 
-          <footer class="shrink-0 border-t border-border/60 bg-background/35 p-3 sm:p-4">
-            <section class="mb-3 rounded-3xl border border-border/60 bg-card/80 p-3">
-              <div class="mb-3 flex items-center justify-between gap-3">
-                <div>
-                  <p class="text-xs uppercase tracking-[0.22em] text-muted-foreground">TODOs en vivo</p>
-                  <p id="todo-caption" class="text-sm text-muted-foreground">Esperando planificación.</p>
-                </div>
-                <Badge id="todo-count" variant="outline">0</Badge>
-              </div>
-              <div id="todos" class="todo-strip">
-                <div class="todo-empty">Sin TODOs todavía.</div>
-              </div>
-            </section>
+					<footer
+						class="shrink-0 border-t border-border/60 bg-background/35 p-3 sm:p-4"
+					>
+						<section
+							class="mb-3 rounded-3xl border border-border/60 bg-card/80 p-3"
+						>
+							<div class="mb-3 flex items-center justify-between gap-3">
+								<div>
+									<p
+										class="text-xs uppercase tracking-[0.22em] text-muted-foreground"
+									>
+										TODOs en vivo
+									</p>
+									<p id="todo-caption" class="text-sm text-muted-foreground">
+										Esperando planificación.
+									</p>
+								</div>
+								<Badge id="todo-count" variant="outline">0</Badge>
+							</div>
+							<div id="todos" class="todo-strip">
+								<div class="todo-empty">Sin TODOs todavía.</div>
+							</div>
+						</section>
 
-            <form id="composer" class="rounded-3xl border border-border/70 bg-card p-2 shadow-lg">
-              <Textarea
-                id="prompt"
-                size="lg"
-                rows="3"
-                class="min-h-24 resize-none border-0 bg-transparent text-base shadow-none focus-visible:ring-0"
-                placeholder="Ej: Crear bucket S3 privado payments-staging-bucket en staging owner payments-team..."
-              />
-              <div class="flex items-center justify-between gap-3 px-2 pb-1 pt-2">
-                <p class="hidden text-xs text-muted-foreground sm:block">Enviar con Ctrl/⌘ + Enter</p>
-                <div class="ml-auto flex items-center gap-2">
-                  <Button id="sample" type="button" variant="ghost" size="sm">Ejemplo</Button>
-                  <Button id="send" type="submit" size="icon" aria-label="Enviar">
-                    <Send class="size-4" />
-                  </Button>
-                </div>
-              </div>
-            </form>
-          </footer>
-        </section>
-      </div>
-    </main>
+						<form
+							id="composer"
+							class="rounded-3xl border border-border/70 bg-card p-2 shadow-lg"
+						>
+							<Textarea
+								id="prompt"
+								size="lg"
+								rows="3"
+								class="min-h-24 resize-none border-0 bg-transparent text-base shadow-none focus-visible:ring-0"
+								placeholder="Ej: Crear bucket S3 privado payments-staging-bucket en staging owner payments-team..."
+							/>
+							<div
+								class="flex items-center justify-between gap-3 px-2 pb-1 pt-2"
+							>
+								<p class="hidden text-xs text-muted-foreground sm:block">
+									Enviar con Ctrl/⌘ + Enter
+								</p>
+								<div class="ml-auto flex items-center gap-2">
+									<Button id="sample" type="button" variant="ghost" size="sm"
+										>Ejemplo</Button
+									>
+									<Button
+										id="send"
+										type="submit"
+										size="icon"
+										aria-label="Enviar"
+									>
+										<Send class="size-4" />
+									</Button>
+								</div>
+							</div>
+						</form>
+					</footer>
+				</section>
+			</div>
+		</main>
 
-    <script>
-      const API_URL = "http://localhost:8000/sse";
-      const history = [];
-      const todos = new Map();
-      const tools = [];
+		<script>
+			const API_URL = "https://api.patagonia.luka.software/sse";
+			const history = [];
+			const todos = new Map();
+			const tools = [];
 
-      const activityEl = document.querySelector("#activity");
-      const clearEl = document.querySelector("#clear");
-      const composerEl = document.querySelector("#composer");
-      const messagesEl = document.querySelector("#messages");
-      const promptEl = document.querySelector("#prompt");
-      const sampleEl = document.querySelector("#sample");
-      const sendEl = document.querySelector("#send");
-      const statusEl = document.querySelector("#status");
-      const sideStatusEl = document.querySelector("#side-status");
-      const todoCaptionEl = document.querySelector("#todo-caption");
-      const todoCountEl = document.querySelector("#todo-count");
-      const todosEl = document.querySelector("#todos");
+			const activityEl = document.querySelector("#activity");
+			const clearEl = document.querySelector("#clear");
+			const composerEl = document.querySelector("#composer");
+			const messagesEl = document.querySelector("#messages");
+			const promptEl = document.querySelector("#prompt");
+			const sampleEl = document.querySelector("#sample");
+			const sendEl = document.querySelector("#send");
+			const statusEl = document.querySelector("#status");
+			const sideStatusEl = document.querySelector("#side-status");
+			const todoCaptionEl = document.querySelector("#todo-caption");
+			const todoCountEl = document.querySelector("#todo-count");
+			const todosEl = document.querySelector("#todos");
 
-      let agentBubbles = new Map();
-      let agentBuffers = new Map();
-      let agentReasoning = new Map();
-      let toolStarts = new Map();
-      let running = false;
+			let agentBubbles = new Map();
+			let agentBuffers = new Map();
+			let agentReasoning = new Map();
+			let toolStarts = new Map();
+			let running = false;
 
-      sampleEl.addEventListener("click", () => {
-        promptEl.value = "Crear bucket S3 privado payments-staging-bucket en staging owner payments-team y base PostgreSQL payments-staging-db de 50GB owner payments-team.";
-        promptEl.focus();
-      });
+			sampleEl.addEventListener("click", () => {
+				promptEl.value =
+					"Crear bucket S3 privado payments-staging-bucket en staging owner payments-team y base PostgreSQL payments-staging-db de 50GB owner payments-team.";
+				promptEl.focus();
+			});
 
-      updateMessageLayout();
-      window.addEventListener("resize", updateMessageLayout);
+			updateMessageLayout();
+			window.addEventListener("resize", updateMessageLayout);
 
-      clearEl.addEventListener("click", () => {
-        if (running) return;
-        history.length = 0;
-        todos.clear();
-        tools.length = 0;
-        agentBubbles = new Map();
-        agentBuffers = new Map();
-        agentReasoning = new Map();
-        toolStarts = new Map();
-        messagesEl.innerHTML = welcomeMarkup();
-        activityEl.innerHTML = `<p data-empty class="rounded-xl border border-dashed border-border/70 p-3 text-muted-foreground">Los eventos del grafo aparecerán acá.</p>`;
-        renderTodos();
-        setStatus("idle");
-        updateMessageLayout();
-      });
+			clearEl.addEventListener("click", () => {
+				if (running) return;
+				history.length = 0;
+				todos.clear();
+				tools.length = 0;
+				agentBubbles = new Map();
+				agentBuffers = new Map();
+				agentReasoning = new Map();
+				toolStarts = new Map();
+				messagesEl.innerHTML = welcomeMarkup();
+				activityEl.innerHTML = `<p data-empty class="rounded-xl border border-dashed border-border/70 p-3 text-muted-foreground">Los eventos del grafo aparecerán acá.</p>`;
+				renderTodos();
+				setStatus("idle");
+				updateMessageLayout();
+			});
 
-      composerEl.addEventListener("submit", (event) => {
-        event.preventDefault();
-        run();
-      });
+			composerEl.addEventListener("submit", (event) => {
+				event.preventDefault();
+				run();
+			});
 
-      promptEl.addEventListener("keydown", (event) => {
-        if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
-          event.preventDefault();
-          run();
-        }
-      });
+			promptEl.addEventListener("keydown", (event) => {
+				if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
+					event.preventDefault();
+					run();
+				}
+			});
 
-      async function run() {
-        const content = promptEl.value.trim();
-        if (!content || running) return;
+			async function run() {
+				const content = promptEl.value.trim();
+				if (!content || running) return;
 
-        running = true;
-        updateMessageLayout();
-        setStatus("running");
-        setDisabled(true);
-        promptEl.value = "";
-        history.push({ type: "human", content });
-        appendMessage("human", content);
-        agentBubbles = new Map();
-        agentBuffers = new Map();
-        agentReasoning = new Map();
-        toolStarts = new Map();
-        addActivity("status", "planning", "Preparando stream SSE");
+				running = true;
+				updateMessageLayout();
+				setStatus("running");
+				setDisabled(true);
+				promptEl.value = "";
+				history.push({ type: "human", content });
+				appendMessage("human", content);
+				agentBubbles = new Map();
+				agentBuffers = new Map();
+				agentReasoning = new Map();
+				toolStarts = new Map();
+				addActivity("status", "planning", "Preparando stream SSE");
 
-        try {
-          const response = await fetch(API_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(history),
-          });
+				try {
+					const response = await fetch(API_URL, {
+						method: "POST",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify(history),
+					});
 
-          if (!response.ok || !response.body) {
-            throw new Error(`HTTP ${response.status}`);
-          }
+					if (!response.ok || !response.body) {
+						throw new Error(`HTTP ${response.status}`);
+					}
 
-          await readSse(response.body);
-        } catch (error) {
-          setStatus("error");
-          addActivity("error", "client", error instanceof Error ? error.message : String(error));
-        } finally {
-          running = false;
-          setDisabled(false);
-          promptEl.focus();
-        }
-      }
+					await readSse(response.body);
+				} catch (error) {
+					setStatus("error");
+					addActivity(
+						"error",
+						"client",
+						error instanceof Error ? error.message : String(error),
+					);
+				} finally {
+					running = false;
+					setDisabled(false);
+					promptEl.focus();
+				}
+			}
 
-      async function readSse(body) {
-        const reader = body.getReader();
-        const decoder = new TextDecoder();
-        let buffer = "";
+			async function readSse(body) {
+				const reader = body.getReader();
+				const decoder = new TextDecoder();
+				let buffer = "";
 
-        while (true) {
-          const { value, done } = await reader.read();
-          if (done) break;
-          buffer += decoder.decode(value, { stream: true });
-          const frames = buffer.split("\n\n");
-          buffer = frames.pop() || "";
-          for (const frame of frames) handleSse(frame);
-        }
-      }
+				while (true) {
+					const { value, done } = await reader.read();
+					if (done) break;
+					buffer += decoder.decode(value, { stream: true });
+					const frames = buffer.split("\n\n");
+					buffer = frames.pop() || "";
+					for (const frame of frames) handleSse(frame);
+				}
+			}
 
-      function handleSse(raw) {
-        const lines = raw.split("\n");
-        const event = lines.find((line) => line.startsWith("event:"))?.slice(6).trim() || "message";
-        const dataLine = lines.find((line) => line.startsWith("data:"));
-        if (!dataLine) return;
-        const data = JSON.parse(dataLine.slice(5));
+			function handleSse(raw) {
+				const lines = raw.split("\n");
+				const event =
+					lines
+						.find((line) => line.startsWith("event:"))
+						?.slice(6)
+						.trim() || "message";
+				const dataLine = lines.find((line) => line.startsWith("data:"));
+				if (!dataLine) return;
+				const data = JSON.parse(dataLine.slice(5));
 
-        if (event === "status") {
-          addActivity("status", data.stage || "graph", data.message || "Actualizando estado");
-          if (data.stage === "planning") renderPlanner();
-          if (data.stage === "executing") addExecutorTimeline("status", "Executor", data.message || "Ejecutando plan");
-          return;
-        }
+				if (event === "status") {
+					addActivity(
+						"status",
+						data.stage || "graph",
+						data.message || "Actualizando estado",
+					);
+					if (data.stage === "planning") renderPlanner();
+					if (data.stage === "executing")
+						addExecutorTimeline(
+							"status",
+							"Executor",
+							data.message || "Ejecutando plan",
+						);
+					return;
+				}
 
-        if (event === "todo") {
-          updateTodos(data);
-          if (Array.isArray(data.todos)) renderPlanner();
-          if (data.todo_id) {
-            const current = todos.get(data.todo_id);
-            addExecutorTimeline("todo", current?.title || data.todo_id, data.status || "Actualizando TODO");
-          }
-          return;
-        }
+				if (event === "todo") {
+					updateTodos(data);
+					if (Array.isArray(data.todos)) renderPlanner();
+					if (data.todo_id) {
+						const current = todos.get(data.todo_id);
+						addExecutorTimeline(
+							"todo",
+							current?.title || data.todo_id,
+							data.status || "Actualizando TODO",
+						);
+					}
+					return;
+				}
 
-        if (event === "tool") {
-          tools.unshift(data);
-          tools.splice(8);
-          addActivity("tool", data.tool || data.agent || "tool", data.message || data.status || "Tool event");
-          addToolTimeline(data);
-          return;
-        }
+				if (event === "tool") {
+					tools.unshift(data);
+					tools.splice(8);
+					addActivity(
+						"tool",
+						data.tool || data.agent || "tool",
+						data.message || data.status || "Tool event",
+					);
+					addToolTimeline(data);
+					return;
+				}
 
-        if (event === "reasoning") {
-          addActivity("reasoning", data.agent || "agent", data.content || "");
-          appendReasoning(data.agent || "agent", data.content || "");
-          return;
-        }
+				if (event === "reasoning") {
+					addActivity("reasoning", data.agent || "agent", data.content || "");
+					appendReasoning(data.agent || "agent", data.content || "");
+					return;
+				}
 
-        if (event === "token") {
-          appendToken(data);
-          return;
-        }
+				if (event === "token") {
+					appendToken(data);
+					return;
+				}
 
-        if (event === "summary") {
-          const text = data.interpretation || data.recommendation || "Run finalizado.";
-          renderSummary(data.status || "done", text);
-          history.push({ type: "ai", content: text });
-          setStatus(data.status || "done");
-          addActivity("summary", data.status || "done", data.recommendation || "Reporte final generado");
-          return;
-        }
+				if (event === "summary") {
+					const text =
+						data.interpretation || data.recommendation || "Run finalizado.";
+					renderSummary(data.status || "done", text);
+					history.push({ type: "ai", content: text });
+					setStatus(data.status || "done");
+					addActivity(
+						"summary",
+						data.status || "done",
+						data.recommendation || "Reporte final generado",
+					);
+					return;
+				}
 
-        if (event === "error") {
-          setStatus("error");
-          addActivity("error", data.code || "stream", data.message || JSON.stringify(data));
-        }
-      }
+				if (event === "error") {
+					setStatus("error");
+					addActivity(
+						"error",
+						data.code || "stream",
+						data.message || JSON.stringify(data),
+					);
+				}
+			}
 
-      function appendToken(data) {
-        const agent = data.agent || "agent";
-        if (agent === "summary") return;
-        appendAgentBuffer(agent, data.content || "");
-      }
+			function appendToken(data) {
+				const agent = data.agent || "agent";
+				if (agent === "summary") return;
+				appendAgentBuffer(agent, data.content || "");
+			}
 
-      function appendAgentBuffer(agent, content) {
-        if (!content) return;
-        agentBuffers.set(agent, `${agentBuffers.get(agent) || ""}${content}`);
-        if (agent === "planner") {
-          renderPlanner();
-        } else if (agent === "executor") {
-          renderExecutorCopy();
-        } else {
-          renderGenericAgent(agent);
-        }
-      }
+			function appendAgentBuffer(agent, content) {
+				if (!content) return;
+				agentBuffers.set(agent, `${agentBuffers.get(agent) || ""}${content}`);
+				if (agent === "planner") {
+					renderPlanner();
+				} else if (agent === "executor") {
+					renderExecutorCopy();
+				} else {
+					renderGenericAgent(agent);
+				}
+			}
 
-      function appendReasoning(agent, content) {
-        if (!content || agent === "summary") return;
-        agentReasoning.set(agent, `${agentReasoning.get(agent) || ""}${content}`);
-        if (agent === "planner") renderPlanner();
-        if (agent === "executor") renderExecutorCopy();
-      }
+			function appendReasoning(agent, content) {
+				if (!content || agent === "summary") return;
+				agentReasoning.set(
+					agent,
+					`${agentReasoning.get(agent) || ""}${content}`,
+				);
+				if (agent === "planner") renderPlanner();
+				if (agent === "executor") renderExecutorCopy();
+			}
 
-      function getAgentBubble(agent) {
-        const existing = agentBubbles.get(agent);
-        if (existing) return existing;
+			function getAgentBubble(agent) {
+				const existing = agentBubbles.get(agent);
+				if (existing) return existing;
 
-        if (messagesEl.querySelector("[data-welcome]")) messagesEl.innerHTML = "";
-        const wrapper = document.createElement("article");
-        wrapper.className = `message ai agent-${agent}`;
-        wrapper.innerHTML = `
+				if (messagesEl.querySelector("[data-welcome]"))
+					messagesEl.innerHTML = "";
+				const wrapper = document.createElement("article");
+				wrapper.className = `message ai agent-${agent}`;
+				wrapper.innerHTML = `
           <div class="avatar">${agentInitial(agent)}</div>
           <div class="bubble agent-bubble">
             <header class="agent-head">
@@ -329,24 +441,27 @@ import Trash from "@tabler/icons/outline/trash.svg";
             <div class="agent-body"></div>
           </div>
         `;
-        messagesEl.appendChild(wrapper);
-        const body = wrapper.querySelector(".agent-body");
-        agentBubbles.set(agent, body);
-        scrollChat();
-        return body;
-      }
+				messagesEl.appendChild(wrapper);
+				const body = wrapper.querySelector(".agent-body");
+				agentBubbles.set(agent, body);
+				scrollChat();
+				return body;
+			}
 
-      function renderPlanner() {
-        const body = getAgentBubble("planner");
-        const parsed = parseStructured(agentBuffers.get("planner") || "");
-        const plannedTodos = parsed?.todos || [...todos.values()];
-        const missingFields = parsed?.missing_fields || [];
-        const errors = parsed?.errors || [];
-        const status = parsed?.status || (plannedTodos.length ? "ready" : "planning");
-        const interpretation = parsed?.interpretation || "Interpretando la solicitud y armando el plan ejecutable.";
-        const reasoning = agentReasoning.get("planner") || "";
+			function renderPlanner() {
+				const body = getAgentBubble("planner");
+				const parsed = parseStructured(agentBuffers.get("planner") || "");
+				const plannedTodos = parsed?.todos || [...todos.values()];
+				const missingFields = parsed?.missing_fields || [];
+				const errors = parsed?.errors || [];
+				const status =
+					parsed?.status || (plannedTodos.length ? "ready" : "planning");
+				const interpretation =
+					parsed?.interpretation ||
+					"Interpretando la solicitud y armando el plan ejecutable.";
+				const reasoning = agentReasoning.get("planner") || "";
 
-        body.innerHTML = `
+				body.innerHTML = `
           <div class="planner-card">
             <div class="planner-status ${escapeHtml(status)}">${escapeHtml(status)}</div>
             <p>${escapeHtml(interpretation)}</p>
@@ -356,136 +471,160 @@ import Trash from "@tabler/icons/outline/trash.svg";
             ${reasoning ? `<details class="reasoning-box"><summary>Reasoning</summary><div class="markdown">${markdownToHtml(reasoning)}</div></details>` : ""}
           </div>
         `;
-        scrollChat();
-      }
+				scrollChat();
+			}
 
-      function renderExecutorCopy() {
-        const body = ensureExecutorBody();
-        const copy = body.querySelector(".executor-copy");
-        const text = agentBuffers.get("executor") || "";
-        const reasoning = agentReasoning.get("executor") || "";
-        copy.innerHTML = `
+			function renderExecutorCopy() {
+				const body = ensureExecutorBody();
+				const copy = body.querySelector(".executor-copy");
+				const text = agentBuffers.get("executor") || "";
+				const reasoning = agentReasoning.get("executor") || "";
+				copy.innerHTML = `
           ${text ? `<div class="markdown">${markdownToHtml(text)}</div>` : `<div class="agent-placeholder">Executor preparando acciones...</div>`}
           ${reasoning ? `<details class="reasoning-box"><summary>Reasoning</summary><div class="markdown">${markdownToHtml(reasoning)}</div></details>` : ""}
         `;
-        scrollChat();
-      }
+				scrollChat();
+			}
 
-      function ensureExecutorBody() {
-        const body = getAgentBubble("executor");
-        if (!body.querySelector(".executor-copy")) {
-          body.innerHTML = `
+			function ensureExecutorBody() {
+				const body = getAgentBubble("executor");
+				if (!body.querySelector(".executor-copy")) {
+					body.innerHTML = `
             <div class="executor-copy"></div>
             <div class="executor-timeline" aria-label="Timeline de ejecucion"></div>
           `;
-        }
-        return body;
-      }
+				}
+				return body;
+			}
 
-      function addExecutorTimeline(kind, label, message, meta = "") {
-        const body = ensureExecutorBody();
-        const timeline = body.querySelector(".executor-timeline");
-        const item = document.createElement("div");
-        item.className = `timeline-item ${kind}`;
-        item.innerHTML = `<time>${timestamp()}</time><strong>${escapeHtml(label)}</strong><span>${escapeHtml(message)}</span>${meta ? `<small>${escapeHtml(meta)}</small>` : ""}`;
-        timeline.appendChild(item);
-        scrollChat();
-      }
+			function addExecutorTimeline(kind, label, message, meta = "") {
+				const body = ensureExecutorBody();
+				const timeline = body.querySelector(".executor-timeline");
+				const item = document.createElement("div");
+				item.className = `timeline-item ${kind}`;
+				item.innerHTML = `<time>${timestamp()}</time><strong>${escapeHtml(label)}</strong><span>${escapeHtml(message)}</span>${meta ? `<small>${escapeHtml(meta)}</small>` : ""}`;
+				timeline.appendChild(item);
+				scrollChat();
+			}
 
-      function addToolTimeline(data) {
-        const tool = data.tool || "tool";
-        if (data.status === "started") {
-          const starts = toolStarts.get(tool) || [];
-          starts.push(Date.now());
-          toolStarts.set(tool, starts);
-          addExecutorTimeline("tool running", tool, data.message || "Invocando tool");
-          return;
-        }
+			function addToolTimeline(data) {
+				const tool = data.tool || "tool";
+				if (data.status === "started") {
+					const starts = toolStarts.get(tool) || [];
+					starts.push(Date.now());
+					toolStarts.set(tool, starts);
+					addExecutorTimeline(
+						"tool running",
+						tool,
+						data.message || "Invocando tool",
+					);
+					return;
+				}
 
-        const starts = toolStarts.get(tool) || [];
-        const startedAt = starts.shift();
-        if (starts.length) toolStarts.set(tool, starts);
-        const duration = startedAt ? `${Math.max(1, Math.round((Date.now() - startedAt) / 100) / 10)}s` : "";
-        addExecutorTimeline(`tool ${data.status || "done"}`, tool, summarizeToolMessage(data.message || data.status || "Tool finalizada"), duration);
-      }
+				const starts = toolStarts.get(tool) || [];
+				const startedAt = starts.shift();
+				if (starts.length) toolStarts.set(tool, starts);
+				const duration = startedAt
+					? `${Math.max(1, Math.round((Date.now() - startedAt) / 100) / 10)}s`
+					: "";
+				addExecutorTimeline(
+					`tool ${data.status || "done"}`,
+					tool,
+					summarizeToolMessage(
+						data.message || data.status || "Tool finalizada",
+					),
+					duration,
+				);
+			}
 
-      function renderGenericAgent(agent) {
-        const body = getAgentBubble(agent);
-        body.innerHTML = `<div class="markdown">${markdownToHtml(agentBuffers.get(agent) || "")}</div>`;
-        scrollChat();
-      }
+			function renderGenericAgent(agent) {
+				const body = getAgentBubble(agent);
+				body.innerHTML = `<div class="markdown">${markdownToHtml(agentBuffers.get(agent) || "")}</div>`;
+				scrollChat();
+			}
 
-      function renderSummary(status, text) {
-        const body = getAgentBubble("summary");
-        body.innerHTML = `
+			function renderSummary(status, text) {
+				const body = getAgentBubble("summary");
+				body.innerHTML = `
           <div class="summary-card ${escapeHtml(status)}">
             <span>${escapeHtml(status)}</span>
             <div class="markdown">${markdownToHtml(text)}</div>
           </div>
         `;
-        scrollChat();
-      }
+				scrollChat();
+			}
 
-      function appendMessage(role, content) {
-        if (messagesEl.querySelector("[data-welcome]")) messagesEl.innerHTML = "";
-        const wrapper = document.createElement("article");
-        wrapper.className = `message ${role}`;
-        wrapper.innerHTML = `
+			function appendMessage(role, content) {
+				if (messagesEl.querySelector("[data-welcome]"))
+					messagesEl.innerHTML = "";
+				const wrapper = document.createElement("article");
+				wrapper.className = `message ${role}`;
+				wrapper.innerHTML = `
           <div class="avatar">${role === "human" ? "Tú" : "AI"}</div>
           <div class="bubble"><div class="bubble-content"></div></div>
         `;
-        const textEl = wrapper.querySelector(".bubble-content");
-        if (role === "human") {
-          textEl.classList.add("markdown");
-          textEl.innerHTML = markdownToHtml(content);
-        }
-        messagesEl.appendChild(wrapper);
-        scrollChat();
-        return textEl;
-      }
+				const textEl = wrapper.querySelector(".bubble-content");
+				if (role === "human") {
+					textEl.classList.add("markdown");
+					textEl.innerHTML = markdownToHtml(content);
+				}
+				messagesEl.appendChild(wrapper);
+				scrollChat();
+				return textEl;
+			}
 
-      function updateMessageLayout() {
-        const main = document.querySelector("main");
-        const header = document.querySelector("section > header");
-        const footer = document.querySelector("section > footer");
-        const mainHeight = main?.getBoundingClientRect().height || window.innerHeight;
-        const headerHeight = header?.getBoundingClientRect().height || 0;
-        const footerHeight = footer?.getBoundingClientRect().height || 0;
-        messagesEl.style.maxHeight = `${Math.max(220, mainHeight - headerHeight - footerHeight - 32)}px`;
-      }
+			function updateMessageLayout() {
+				const main = document.querySelector("main");
+				const header = document.querySelector("section > header");
+				const footer = document.querySelector("section > footer");
+				const mainHeight =
+					main?.getBoundingClientRect().height || window.innerHeight;
+				const headerHeight = header?.getBoundingClientRect().height || 0;
+				const footerHeight = footer?.getBoundingClientRect().height || 0;
+				messagesEl.style.maxHeight = `${Math.max(220, mainHeight - headerHeight - footerHeight - 32)}px`;
+			}
 
-      function updateTodos(data) {
-        if (Array.isArray(data.todos)) {
-          for (const todo of data.todos) {
-            const id = todo.id || todo.todo_id;
-            if (!id) continue;
-            todos.set(id, {
-              id,
-              title: todo.title || id,
-              description: todo.description || todo.message || "",
-              status: todo.status || (todo.done ? "completed" : "pending"),
-            });
-          }
-        }
+			function updateTodos(data) {
+				if (Array.isArray(data.todos)) {
+					for (const todo of data.todos) {
+						const id = todo.id || todo.todo_id;
+						if (!id) continue;
+						todos.set(id, {
+							id,
+							title: todo.title || id,
+							description: todo.description || todo.message || "",
+							status: todo.status || (todo.done ? "completed" : "pending"),
+						});
+					}
+				}
 
-        if (data.todo_id) {
-          const current = todos.get(data.todo_id) || { id: data.todo_id, title: data.todo_id, description: "" };
-          todos.set(data.todo_id, { ...current, status: data.status || current.status || "running" });
-        }
-        renderTodos();
-      }
+				if (data.todo_id) {
+					const current = todos.get(data.todo_id) || {
+						id: data.todo_id,
+						title: data.todo_id,
+						description: "",
+					};
+					todos.set(data.todo_id, {
+						...current,
+						status: data.status || current.status || "running",
+					});
+				}
+				renderTodos();
+			}
 
-      function renderTodos() {
-        const items = [...todos.values()];
-        todoCountEl.textContent = String(items.length);
-        todoCaptionEl.textContent = items.length ? "Plan detectado y sincronizado con el executor." : "Esperando planificación.";
-        if (!items.length) {
-          todosEl.innerHTML = `<div class="todo-empty">Sin TODOs todavía.</div>`;
-          return;
-        }
-        todosEl.innerHTML = items
-          .map(
-            (todo) => `
+			function renderTodos() {
+				const items = [...todos.values()];
+				todoCountEl.textContent = String(items.length);
+				todoCaptionEl.textContent = items.length
+					? "Plan detectado y sincronizado con el executor."
+					: "Esperando planificación.";
+				if (!items.length) {
+					todosEl.innerHTML = `<div class="todo-empty">Sin TODOs todavía.</div>`;
+					return;
+				}
+				todosEl.innerHTML = items
+					.map(
+						(todo) => `
               <div class="todo-card ${escapeHtml(todo.status)}">
                 <span class="todo-state" aria-hidden="true">${todo.status === "completed" ? "✓" : ""}</span>
                 <div class="todo-copy">
@@ -495,625 +634,646 @@ import Trash from "@tabler/icons/outline/trash.svg";
                 <small>${escapeHtml(todo.status)}</small>
               </div>
             `,
-          )
-          .join("");
-      }
+					)
+					.join("");
+			}
 
-      function addActivity(kind, label, message) {
-        activityEl.querySelector("[data-empty]")?.remove();
-        const item = document.createElement("div");
-        item.className = `activity-item ${kind}`;
-        item.innerHTML = `<time>${timestamp()}</time><span>${escapeHtml(kind)}</span><strong>${escapeHtml(label)}</strong><p>${escapeHtml(message)}</p>`;
-        activityEl.appendChild(item);
-        activityEl.scrollTop = activityEl.scrollHeight;
-      }
+			function addActivity(kind, label, message) {
+				activityEl.querySelector("[data-empty]")?.remove();
+				const item = document.createElement("div");
+				item.className = `activity-item ${kind}`;
+				item.innerHTML = `<time>${timestamp()}</time><span>${escapeHtml(kind)}</span><strong>${escapeHtml(label)}</strong><p>${escapeHtml(message)}</p>`;
+				activityEl.appendChild(item);
+				activityEl.scrollTop = activityEl.scrollHeight;
+			}
 
-      function setStatus(status) {
-        statusEl.textContent = status;
-        sideStatusEl.textContent = status;
-        document.body.dataset.status = status;
-      }
+			function setStatus(status) {
+				statusEl.textContent = status;
+				sideStatusEl.textContent = status;
+				document.body.dataset.status = status;
+			}
 
-      function setDisabled(disabled) {
-        promptEl.disabled = disabled;
-        sendEl.disabled = disabled;
-      }
+			function setDisabled(disabled) {
+				promptEl.disabled = disabled;
+				sendEl.disabled = disabled;
+			}
 
-      function scrollChat() {
-        updateMessageLayout();
-        messagesEl.scrollTop = messagesEl.scrollHeight;
-      }
+			function scrollChat() {
+				updateMessageLayout();
+				messagesEl.scrollTop = messagesEl.scrollHeight;
+			}
 
-      function escapeHtml(value) {
-        return String(value ?? "")
-          .replaceAll("&", "&amp;")
-          .replaceAll("<", "&lt;")
-          .replaceAll(">", "&gt;")
-          .replaceAll('"', "&quot;")
-          .replaceAll("'", "&#039;");
-      }
+			function escapeHtml(value) {
+				return String(value ?? "")
+					.replaceAll("&", "&amp;")
+					.replaceAll("<", "&lt;")
+					.replaceAll(">", "&gt;")
+					.replaceAll('"', "&quot;")
+					.replaceAll("'", "&#039;");
+			}
 
-      function markdownToHtml(value) {
-        const blocks = [];
-        let text = escapeHtml(value).replace(/```([\s\S]*?)```/g, (_, code) => {
-          const index = blocks.push(`<pre><code>${code.trim()}</code></pre>`) - 1;
-          return `@@BLOCK_${index}@@`;
-        });
-        text = text.replace(/(?:^|\n)((?:[-*]\s+.*(?:\n|$))+)/g, (match, list) => {
-          const prefix = match.startsWith("\n") ? "\n" : "";
-          const items = list
-            .trim()
-            .split("\n")
-            .map((line) => `<li>${line.replace(/^[-*]\s+/, "")}</li>`)
-            .join("");
-          return `${prefix}<ul>${items}</ul>`;
-        });
+			function markdownToHtml(value) {
+				const blocks = [];
+				let text = escapeHtml(value).replace(/```([\s\S]*?)```/g, (_, code) => {
+					const index =
+						blocks.push(`<pre><code>${code.trim()}</code></pre>`) - 1;
+					return `@@BLOCK_${index}@@`;
+				});
+				text = text.replace(
+					/(?:^|\n)((?:[-*]\s+.*(?:\n|$))+)/g,
+					(match, list) => {
+						const prefix = match.startsWith("\n") ? "\n" : "";
+						const items = list
+							.trim()
+							.split("\n")
+							.map((line) => `<li>${line.replace(/^[-*]\s+/, "")}</li>`)
+							.join("");
+						return `${prefix}<ul>${items}</ul>`;
+					},
+				);
 
-        text = text
-          .replace(/^###\s+(.*)$/gm, "<h3>$1</h3>")
-          .replace(/^##\s+(.*)$/gm, "<h2>$1</h2>")
-          .replace(/^#\s+(.*)$/gm, "<h1>$1</h1>")
-          .replace(/`([^`]+)`/g, "<code>$1</code>")
-          .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
-          .replace(/\*([^*]+)\*/g, "<em>$1</em>")
-          .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer">$1</a>')
-          .replace(/\n{2,}/g, "</p><p>")
-          .replace(/\n/g, "<br />");
+				text = text
+					.replace(/^###\s+(.*)$/gm, "<h3>$1</h3>")
+					.replace(/^##\s+(.*)$/gm, "<h2>$1</h2>")
+					.replace(/^#\s+(.*)$/gm, "<h1>$1</h1>")
+					.replace(/`([^`]+)`/g, "<code>$1</code>")
+					.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+					.replace(/\*([^*]+)\*/g, "<em>$1</em>")
+					.replace(
+						/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+						'<a href="$2" target="_blank" rel="noreferrer">$1</a>',
+					)
+					.replace(/\n{2,}/g, "</p><p>")
+					.replace(/\n/g, "<br />");
 
-        text = `<p>${text}</p>`
-          .replace(/<p>(\s*<h[1-3]>)/g, "$1")
-          .replace(/(<\/h[1-3]>\s*)<\/p>/g, "$1")
-          .replace(/<p>(\s*<ul>)/g, "$1")
-          .replace(/(<\/ul>\s*)<\/p>/g, "$1")
-          .replace(/<p>(\s*<pre>)/g, "$1")
-          .replace(/(<\/pre>\s*)<\/p>/g, "$1");
+				text = `<p>${text}</p>`
+					.replace(/<p>(\s*<h[1-3]>)/g, "$1")
+					.replace(/(<\/h[1-3]>\s*)<\/p>/g, "$1")
+					.replace(/<p>(\s*<ul>)/g, "$1")
+					.replace(/(<\/ul>\s*)<\/p>/g, "$1")
+					.replace(/<p>(\s*<pre>)/g, "$1")
+					.replace(/(<\/pre>\s*)<\/p>/g, "$1");
 
-        return text.replace(/@@BLOCK_(\d+)@@/g, (_, index) => blocks[Number(index)] || "");
-      }
+				return text.replace(
+					/@@BLOCK_(\d+)@@/g,
+					(_, index) => blocks[Number(index)] || "",
+				);
+			}
 
-      function parseStructured(value) {
-        const trimmed = value.trim();
-        if (!trimmed) return null;
+			function parseStructured(value) {
+				const trimmed = value.trim();
+				if (!trimmed) return null;
 
-        const candidates = [trimmed];
-        const firstBrace = trimmed.indexOf("{");
-        const lastBrace = trimmed.lastIndexOf("}");
-        if (firstBrace >= 0 && lastBrace > firstBrace) {
-          candidates.push(trimmed.slice(firstBrace, lastBrace + 1));
-        }
+				const candidates = [trimmed];
+				const firstBrace = trimmed.indexOf("{");
+				const lastBrace = trimmed.lastIndexOf("}");
+				if (firstBrace >= 0 && lastBrace > firstBrace) {
+					candidates.push(trimmed.slice(firstBrace, lastBrace + 1));
+				}
 
-        for (const candidate of candidates) {
-          try {
-            return JSON.parse(candidate);
-          } catch {
-            // El token stream puede estar incompleto; se renderiza el estado UI parcial.
-          }
-        }
-        return null;
-      }
+				for (const candidate of candidates) {
+					try {
+						return JSON.parse(candidate);
+					} catch {
+						// El token stream puede estar incompleto; se renderiza el estado UI parcial.
+					}
+				}
+				return null;
+			}
 
-      function summarizeToolMessage(message) {
-        const text = String(message || "");
-        const toonMessage = text.match(/message:\s*([^\n]+)/)?.[1];
-        return toonMessage || text.slice(0, 180);
-      }
+			function summarizeToolMessage(message) {
+				const text = String(message || "");
+				const toonMessage = text.match(/message:\s*([^\n]+)/)?.[1];
+				return toonMessage || text.slice(0, 180);
+			}
 
-      function agentLabel(agent) {
-        const labels = {
-          planner: "Planner",
-          executor: "Executor",
-          summary: "Summary",
-        };
-        return labels[agent] || agent;
-      }
+			function agentLabel(agent) {
+				const labels = {
+					planner: "Planner",
+					executor: "Executor",
+					summary: "Summary",
+				};
+				return labels[agent] || agent;
+			}
 
-      function agentInitial(agent) {
-        const initials = {
-          planner: "PL",
-          executor: "EX",
-          summary: "SU",
-        };
-        return initials[agent] || agent.slice(0, 2).toUpperCase();
-      }
+			function agentInitial(agent) {
+				const initials = {
+					planner: "PL",
+					executor: "EX",
+					summary: "SU",
+				};
+				return initials[agent] || agent.slice(0, 2).toUpperCase();
+			}
 
-      function timestamp() {
-        return new Date().toLocaleTimeString("es-AR", {
-          minute: "2-digit",
-          second: "2-digit",
-        });
-      }
+			function timestamp() {
+				return new Date().toLocaleTimeString("es-AR", {
+					minute: "2-digit",
+					second: "2-digit",
+				});
+			}
 
-      function welcomeMarkup() {
-        return `
+			function welcomeMarkup() {
+				return `
           <div data-welcome class="mx-auto max-w-2xl rounded-3xl border border-border/70 bg-background/55 p-5 text-center shadow-inner">
             <p class="text-xs uppercase tracking-[0.24em] text-primary">Nuevo run</p>
             <p class="mt-3 text-balance text-lg font-medium">Contame qué infraestructura o tarea DevOps querés ejecutar.</p>
             <p class="mt-2 text-sm text-muted-foreground">El historial completo se envía al backend como mensajes LangChain y los TODOs se actualizan en vivo.</p>
           </div>
         `;
-      }
-    </script>
-  </body>
+			}
+		</script>
+	</body>
 </html>
 
 <style>
-  :global(body) {
-    margin: 0;
-    font-family:
-      ui-sans-serif,
-      system-ui,
-      -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
-      sans-serif;
-  }
-
-  .chat-scroll {
-    scrollbar-width: thin;
-    scrollbar-color: color-mix(in oklab, var(--foreground) 18%, transparent) transparent;
-  }
-
-  .activity-scroll {
-    max-height: calc(100dvh - 22rem);
-    overflow: auto;
-    scrollbar-width: thin;
-  }
-
-  :global(.message) {
-    display: grid;
-    grid-template-columns: 2.6rem minmax(0, 1fr);
-    gap: 0.8rem;
-    max-width: 52rem;
-  }
-
-  :global(.message.ai) {
-    width: min(100%, 52rem);
-  }
-
-  :global(.message.human) {
-    margin-left: auto;
-    grid-template-columns: minmax(0, 1fr) 2.6rem;
-  }
-
-  :global(.message.human .avatar) {
-    order: 2;
-    background: color-mix(in oklab, var(--primary) 35%, var(--background));
-  }
-
-  :global(.avatar) {
-    display: grid;
-    place-items: center;
-    width: 2.6rem;
-    height: 2.6rem;
-    border-radius: 999px;
-    border: 1px solid var(--border);
-    background: var(--muted);
-    color: var(--foreground);
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.04em;
-  }
-
-  :global(.bubble) {
-    border: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
-    background: color-mix(in oklab, var(--card) 82%, transparent);
-    border-radius: 1.35rem;
-    padding: 0.95rem 1rem;
-    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.16);
-  }
-
-  :global(.message.human .bubble) {
-    background: color-mix(in oklab, var(--primary) 26%, var(--card));
-  }
-
-  :global(.agent-bubble) {
-    padding: 0;
-    overflow: hidden;
-  }
-
-  :global(.agent-head) {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.8rem;
-    border-bottom: 1px solid color-mix(in oklab, var(--border) 65%, transparent);
-    background: color-mix(in oklab, var(--primary) 9%, transparent);
-    padding: 0.62rem 0.85rem;
-  }
-
-  :global(.agent-head span) {
-    color: var(--primary-accent);
-    font-size: 0.75rem;
-    font-weight: 900;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-
-  :global(.agent-head small) {
-    color: var(--muted-foreground);
-    font-size: 0.68rem;
-  }
-
-  :global(.agent-body) {
-    padding: 0.9rem;
-  }
-
-  :global(.markdown) {
-    line-height: 1.65;
-  }
-
-  :global(.markdown > :first-child) {
-    margin-top: 0;
-  }
-
-  :global(.markdown > :last-child) {
-    margin-bottom: 0;
-  }
-
-  :global(.markdown p) {
-    margin: 0.55rem 0;
-  }
-
-  :global(.markdown h1),
-  :global(.markdown h2),
-  :global(.markdown h3) {
-    margin: 0.8rem 0 0.35rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-  }
-
-  :global(.markdown ul) {
-    margin: 0.55rem 0;
-    padding-left: 1.2rem;
-    list-style: disc;
-  }
-
-  :global(.markdown li) {
-    margin: 0.2rem 0;
-  }
-
-  :global(.markdown code) {
-    border: 1px solid color-mix(in oklab, var(--primary) 28%, transparent);
-    border-radius: 0.45rem;
-    background: color-mix(in oklab, var(--primary) 14%, var(--background));
-    padding: 0.1rem 0.32rem;
-    font-size: 0.86em;
-  }
-
-  :global(.markdown pre) {
-    overflow-x: auto;
-    border: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
-    border-radius: 0.95rem;
-    background: color-mix(in oklab, var(--background) 78%, black);
-    padding: 0.85rem;
-  }
-
-  :global(.markdown pre code) {
-    border: 0;
-    background: transparent;
-    padding: 0;
-  }
-
-  :global(.markdown a) {
-    color: var(--primary-accent);
-    text-decoration: underline;
-    text-underline-offset: 0.18em;
-  }
-
-  :global(.planner-card) {
-    display: grid;
-    gap: 0.75rem;
-  }
-
-  :global(.planner-status),
-  :global(.summary-card > span) {
-    width: fit-content;
-    border: 1px solid color-mix(in oklab, var(--primary) 55%, transparent);
-    border-radius: 999px;
-    background: color-mix(in oklab, var(--primary) 18%, transparent);
-    color: var(--primary-accent);
-    padding: 0.18rem 0.55rem;
-    font-size: 0.66rem;
-    font-weight: 900;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-
-  :global(.planner-card p) {
-    margin: 0;
-    color: var(--foreground);
-  }
-
-  :global(.planner-card ol) {
-    display: grid;
-    gap: 0.48rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  :global(.planner-card li) {
-    border: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
-    border-radius: 0.9rem;
-    background: color-mix(in oklab, var(--background) 48%, transparent);
-    padding: 0.62rem 0.7rem;
-  }
-
-  :global(.planner-card li strong),
-  :global(.planner-card li span) {
-    display: block;
-  }
-
-  :global(.planner-card li span) {
-    margin-top: 0.18rem;
-    color: var(--muted-foreground);
-    font-size: 0.82rem;
-    line-height: 1.4;
-  }
-
-  :global(.planner-issues) {
-    border: 1px solid color-mix(in oklab, var(--primary) 38%, transparent);
-    border-radius: 0.9rem;
-    padding: 0.65rem;
-    color: var(--muted-foreground);
-  }
-
-  :global(.planner-issues strong),
-  :global(.planner-issues span) {
-    display: block;
-  }
-
-  :global(.agent-placeholder) {
-    border: 1px dashed color-mix(in oklab, var(--border) 75%, transparent);
-    border-radius: 0.9rem;
-    color: var(--muted-foreground);
-    padding: 0.72rem;
-  }
-
-  :global(.reasoning-box) {
-    border-top: 1px solid color-mix(in oklab, var(--border) 65%, transparent);
-    color: var(--muted-foreground);
-    padding-top: 0.65rem;
-  }
-
-  :global(.reasoning-box summary) {
-    cursor: pointer;
-    color: var(--primary-accent);
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  :global(.executor-copy) {
-    color: var(--muted-foreground);
-  }
-
-  :global(.executor-timeline) {
-    display: grid;
-    gap: 0.5rem;
-    margin-top: 0.8rem;
-  }
-
-  :global(.timeline-item) {
-    position: relative;
-    display: grid;
-    grid-template-columns: 4rem minmax(0, 1fr) auto;
-    gap: 0.55rem;
-    align-items: start;
-    border: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
-    border-radius: 0.95rem;
-    background: color-mix(in oklab, var(--background) 52%, transparent);
-    padding: 0.58rem 0.68rem;
-  }
-
-  :global(.timeline-item.running) {
-    border-color: color-mix(in oklab, var(--primary) 68%, transparent);
-    background: linear-gradient(110deg, color-mix(in oklab, var(--primary) 24%, var(--background)), color-mix(in oklab, var(--background) 60%, transparent));
-  }
-
-  :global(.timeline-item time),
-  :global(.timeline-item small) {
-    color: var(--muted-foreground);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.68rem;
-  }
-
-  :global(.timeline-item strong) {
-    overflow: hidden;
-    color: var(--foreground);
-    font-size: 0.82rem;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  :global(.timeline-item span) {
-    grid-column: 2 / -1;
-    color: var(--muted-foreground);
-    font-size: 0.78rem;
-    line-height: 1.35;
-  }
-
-  :global(.summary-card) {
-    display: grid;
-    gap: 0.75rem;
-  }
-
-  .todo-strip {
-    display: grid;
-    gap: 0.5rem;
-  }
-
-  .todo-empty,
-  :global(.todo-card),
-  :global(.activity-item) {
-    border: 1px solid color-mix(in oklab, var(--border) 82%, transparent);
-    border-radius: 1.15rem;
-    background: color-mix(in oklab, var(--background) 58%, transparent);
-    padding: 0.78rem;
-  }
-
-  :global(.todo-card) {
-    display: grid;
-    grid-template-columns: 1rem minmax(0, 1fr) auto;
-    align-items: start;
-    gap: 0.55rem;
-    padding: 0.55rem 0.68rem;
-    border-radius: 1rem;
-    background: color-mix(in oklab, var(--background) 65%, transparent);
-  }
-
-  .todo-empty {
-    color: var(--muted-foreground);
-  }
-
-  :global(.todo-card .todo-state),
-  :global(.activity-item span) {
-    color: var(--primary-accent);
-    font-size: 0.68rem;
-    font-weight: 800;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-
-  :global(.todo-card .todo-state) {
-    display: grid;
-    place-items: center;
-    width: 1rem;
-    height: 1rem;
-    border: 1px solid color-mix(in oklab, var(--border) 82%, transparent);
-    border-radius: 999px;
-    letter-spacing: 0;
-  }
-
-  :global(.todo-copy) {
-    min-width: 0;
-  }
-
-  :global(.todo-copy strong) {
-    display: block;
-    overflow: hidden;
-    margin: 0;
-    font-size: 0.78rem;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  :global(.todo-copy span) {
-    display: block;
-    overflow: hidden;
-    margin-top: 0.12rem;
-    color: var(--muted-foreground);
-    font-size: 0.72rem;
-    line-height: 1.25;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  :global(.activity-item strong) {
-    display: block;
-    margin-top: 0.25rem;
-    font-size: 0.9rem;
-  }
-
-  :global(.todo-card small) {
-    color: var(--muted-foreground);
-    font-size: 0.68rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  :global(.activity-item p) {
-    margin: 0.25rem 0 0;
-    color: var(--muted-foreground);
-    font-size: 0.82rem;
-    line-height: 1.35;
-  }
-
-  :global(.todo-card.running) {
-    border-color: color-mix(in oklab, var(--primary) 70%, transparent);
-    background: linear-gradient(
-      110deg,
-      color-mix(in oklab, var(--primary) 34%, var(--background)),
-      color-mix(in oklab, var(--primary) 9%, var(--background)),
-      color-mix(in oklab, var(--primary) 28%, var(--background))
-    );
-    background-size: 220% 100%;
-    animation: shimmer 1.6s linear infinite;
-  }
-
-  :global(.todo-card.running .todo-state),
-  :global(.todo-card.retrying .todo-state) {
-    border-top-color: var(--primary-accent);
-    animation: spin 0.8s linear infinite;
-  }
-
-  :global(.todo-card.retrying) {
-    border-color: color-mix(in oklab, var(--primary) 70%, transparent);
-  }
-
-  :global(.todo-card.completed) {
-    border-color: color-mix(in oklab, var(--success) 62%, transparent);
-    opacity: 0.72;
-  }
-
-  :global(.todo-card.completed strong),
-  :global(.todo-card.completed .todo-copy span) {
-    text-decoration: line-through;
-    text-decoration-thickness: 2px;
-    text-decoration-color: color-mix(in oklab, var(--success) 80%, var(--foreground));
-  }
-
-  :global(.todo-card.failed) {
-    border-color: color-mix(in oklab, var(--error) 72%, transparent);
-  }
-
-  :global(.activity-item) {
-    animation: rise 0.2s ease-out;
-  }
-
-  :global(.activity-item time) {
-    float: right;
-    color: var(--muted-foreground);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.68rem;
-  }
-
-  @keyframes shimmer {
-    from {
-      background-position: 0% 50%;
-    }
-    to {
-      background-position: 220% 50%;
-    }
-  }
-
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  @keyframes rise {
-    from {
-      opacity: 0;
-      transform: translateY(0.4rem);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @media (max-width: 640px) {
-    :global(.message),
-    :global(.message.human) {
-      grid-template-columns: 1fr;
-    }
-
-    :global(.avatar) {
-      display: none;
-    }
-  }
+	:global(body) {
+		margin: 0;
+		font-family:
+			ui-sans-serif,
+			system-ui,
+			-apple-system,
+			BlinkMacSystemFont,
+			"Segoe UI",
+			sans-serif;
+	}
+
+	.chat-scroll {
+		scrollbar-width: thin;
+		scrollbar-color: color-mix(in oklab, var(--foreground) 18%, transparent)
+			transparent;
+	}
+
+	.activity-scroll {
+		max-height: calc(100dvh - 22rem);
+		overflow: auto;
+		scrollbar-width: thin;
+	}
+
+	:global(.message) {
+		display: grid;
+		grid-template-columns: 2.6rem minmax(0, 1fr);
+		gap: 0.8rem;
+		max-width: 52rem;
+	}
+
+	:global(.message.ai) {
+		width: min(100%, 52rem);
+	}
+
+	:global(.message.human) {
+		margin-left: auto;
+		grid-template-columns: minmax(0, 1fr) 2.6rem;
+	}
+
+	:global(.message.human .avatar) {
+		order: 2;
+		background: color-mix(in oklab, var(--primary) 35%, var(--background));
+	}
+
+	:global(.avatar) {
+		display: grid;
+		place-items: center;
+		width: 2.6rem;
+		height: 2.6rem;
+		border-radius: 999px;
+		border: 1px solid var(--border);
+		background: var(--muted);
+		color: var(--foreground);
+		font-size: 0.72rem;
+		font-weight: 800;
+		letter-spacing: 0.04em;
+	}
+
+	:global(.bubble) {
+		border: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
+		background: color-mix(in oklab, var(--card) 82%, transparent);
+		border-radius: 1.35rem;
+		padding: 0.95rem 1rem;
+		box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.16);
+	}
+
+	:global(.message.human .bubble) {
+		background: color-mix(in oklab, var(--primary) 26%, var(--card));
+	}
+
+	:global(.agent-bubble) {
+		padding: 0;
+		overflow: hidden;
+	}
+
+	:global(.agent-head) {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.8rem;
+		border-bottom: 1px solid color-mix(in oklab, var(--border) 65%, transparent);
+		background: color-mix(in oklab, var(--primary) 9%, transparent);
+		padding: 0.62rem 0.85rem;
+	}
+
+	:global(.agent-head span) {
+		color: var(--primary-accent);
+		font-size: 0.75rem;
+		font-weight: 900;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+	}
+
+	:global(.agent-head small) {
+		color: var(--muted-foreground);
+		font-size: 0.68rem;
+	}
+
+	:global(.agent-body) {
+		padding: 0.9rem;
+	}
+
+	:global(.markdown) {
+		line-height: 1.65;
+	}
+
+	:global(.markdown > :first-child) {
+		margin-top: 0;
+	}
+
+	:global(.markdown > :last-child) {
+		margin-bottom: 0;
+	}
+
+	:global(.markdown p) {
+		margin: 0.55rem 0;
+	}
+
+	:global(.markdown h1),
+	:global(.markdown h2),
+	:global(.markdown h3) {
+		margin: 0.8rem 0 0.35rem;
+		font-weight: 800;
+		letter-spacing: -0.02em;
+	}
+
+	:global(.markdown ul) {
+		margin: 0.55rem 0;
+		padding-left: 1.2rem;
+		list-style: disc;
+	}
+
+	:global(.markdown li) {
+		margin: 0.2rem 0;
+	}
+
+	:global(.markdown code) {
+		border: 1px solid color-mix(in oklab, var(--primary) 28%, transparent);
+		border-radius: 0.45rem;
+		background: color-mix(in oklab, var(--primary) 14%, var(--background));
+		padding: 0.1rem 0.32rem;
+		font-size: 0.86em;
+	}
+
+	:global(.markdown pre) {
+		overflow-x: auto;
+		border: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
+		border-radius: 0.95rem;
+		background: color-mix(in oklab, var(--background) 78%, black);
+		padding: 0.85rem;
+	}
+
+	:global(.markdown pre code) {
+		border: 0;
+		background: transparent;
+		padding: 0;
+	}
+
+	:global(.markdown a) {
+		color: var(--primary-accent);
+		text-decoration: underline;
+		text-underline-offset: 0.18em;
+	}
+
+	:global(.planner-card) {
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	:global(.planner-status),
+	:global(.summary-card > span) {
+		width: fit-content;
+		border: 1px solid color-mix(in oklab, var(--primary) 55%, transparent);
+		border-radius: 999px;
+		background: color-mix(in oklab, var(--primary) 18%, transparent);
+		color: var(--primary-accent);
+		padding: 0.18rem 0.55rem;
+		font-size: 0.66rem;
+		font-weight: 900;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
+
+	:global(.planner-card p) {
+		margin: 0;
+		color: var(--foreground);
+	}
+
+	:global(.planner-card ol) {
+		display: grid;
+		gap: 0.48rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	:global(.planner-card li) {
+		border: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+		border-radius: 0.9rem;
+		background: color-mix(in oklab, var(--background) 48%, transparent);
+		padding: 0.62rem 0.7rem;
+	}
+
+	:global(.planner-card li strong),
+	:global(.planner-card li span) {
+		display: block;
+	}
+
+	:global(.planner-card li span) {
+		margin-top: 0.18rem;
+		color: var(--muted-foreground);
+		font-size: 0.82rem;
+		line-height: 1.4;
+	}
+
+	:global(.planner-issues) {
+		border: 1px solid color-mix(in oklab, var(--primary) 38%, transparent);
+		border-radius: 0.9rem;
+		padding: 0.65rem;
+		color: var(--muted-foreground);
+	}
+
+	:global(.planner-issues strong),
+	:global(.planner-issues span) {
+		display: block;
+	}
+
+	:global(.agent-placeholder) {
+		border: 1px dashed color-mix(in oklab, var(--border) 75%, transparent);
+		border-radius: 0.9rem;
+		color: var(--muted-foreground);
+		padding: 0.72rem;
+	}
+
+	:global(.reasoning-box) {
+		border-top: 1px solid color-mix(in oklab, var(--border) 65%, transparent);
+		color: var(--muted-foreground);
+		padding-top: 0.65rem;
+	}
+
+	:global(.reasoning-box summary) {
+		cursor: pointer;
+		color: var(--primary-accent);
+		font-size: 0.72rem;
+		font-weight: 800;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	:global(.executor-copy) {
+		color: var(--muted-foreground);
+	}
+
+	:global(.executor-timeline) {
+		display: grid;
+		gap: 0.5rem;
+		margin-top: 0.8rem;
+	}
+
+	:global(.timeline-item) {
+		position: relative;
+		display: grid;
+		grid-template-columns: 4rem minmax(0, 1fr) auto;
+		gap: 0.55rem;
+		align-items: start;
+		border: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+		border-radius: 0.95rem;
+		background: color-mix(in oklab, var(--background) 52%, transparent);
+		padding: 0.58rem 0.68rem;
+	}
+
+	:global(.timeline-item.running) {
+		border-color: color-mix(in oklab, var(--primary) 68%, transparent);
+		background: linear-gradient(
+			110deg,
+			color-mix(in oklab, var(--primary) 24%, var(--background)),
+			color-mix(in oklab, var(--background) 60%, transparent)
+		);
+	}
+
+	:global(.timeline-item time),
+	:global(.timeline-item small) {
+		color: var(--muted-foreground);
+		font-family:
+			ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+		font-size: 0.68rem;
+	}
+
+	:global(.timeline-item strong) {
+		overflow: hidden;
+		color: var(--foreground);
+		font-size: 0.82rem;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	:global(.timeline-item span) {
+		grid-column: 2 / -1;
+		color: var(--muted-foreground);
+		font-size: 0.78rem;
+		line-height: 1.35;
+	}
+
+	:global(.summary-card) {
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.todo-strip {
+		display: grid;
+		gap: 0.5rem;
+	}
+
+	.todo-empty,
+	:global(.todo-card),
+	:global(.activity-item) {
+		border: 1px solid color-mix(in oklab, var(--border) 82%, transparent);
+		border-radius: 1.15rem;
+		background: color-mix(in oklab, var(--background) 58%, transparent);
+		padding: 0.78rem;
+	}
+
+	:global(.todo-card) {
+		display: grid;
+		grid-template-columns: 1rem minmax(0, 1fr) auto;
+		align-items: start;
+		gap: 0.55rem;
+		padding: 0.55rem 0.68rem;
+		border-radius: 1rem;
+		background: color-mix(in oklab, var(--background) 65%, transparent);
+	}
+
+	.todo-empty {
+		color: var(--muted-foreground);
+	}
+
+	:global(.todo-card .todo-state),
+	:global(.activity-item span) {
+		color: var(--primary-accent);
+		font-size: 0.68rem;
+		font-weight: 800;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+	}
+
+	:global(.todo-card .todo-state) {
+		display: grid;
+		place-items: center;
+		width: 1rem;
+		height: 1rem;
+		border: 1px solid color-mix(in oklab, var(--border) 82%, transparent);
+		border-radius: 999px;
+		letter-spacing: 0;
+	}
+
+	:global(.todo-copy) {
+		min-width: 0;
+	}
+
+	:global(.todo-copy strong) {
+		display: block;
+		overflow: hidden;
+		margin: 0;
+		font-size: 0.78rem;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	:global(.todo-copy span) {
+		display: block;
+		overflow: hidden;
+		margin-top: 0.12rem;
+		color: var(--muted-foreground);
+		font-size: 0.72rem;
+		line-height: 1.25;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	:global(.activity-item strong) {
+		display: block;
+		margin-top: 0.25rem;
+		font-size: 0.9rem;
+	}
+
+	:global(.todo-card small) {
+		color: var(--muted-foreground);
+		font-size: 0.68rem;
+		font-weight: 800;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	:global(.activity-item p) {
+		margin: 0.25rem 0 0;
+		color: var(--muted-foreground);
+		font-size: 0.82rem;
+		line-height: 1.35;
+	}
+
+	:global(.todo-card.running) {
+		border-color: color-mix(in oklab, var(--primary) 70%, transparent);
+		background: linear-gradient(
+			110deg,
+			color-mix(in oklab, var(--primary) 34%, var(--background)),
+			color-mix(in oklab, var(--primary) 9%, var(--background)),
+			color-mix(in oklab, var(--primary) 28%, var(--background))
+		);
+		background-size: 220% 100%;
+		animation: shimmer 1.6s linear infinite;
+	}
+
+	:global(.todo-card.running .todo-state),
+	:global(.todo-card.retrying .todo-state) {
+		border-top-color: var(--primary-accent);
+		animation: spin 0.8s linear infinite;
+	}
+
+	:global(.todo-card.retrying) {
+		border-color: color-mix(in oklab, var(--primary) 70%, transparent);
+	}
+
+	:global(.todo-card.completed) {
+		border-color: color-mix(in oklab, var(--success) 62%, transparent);
+		opacity: 0.72;
+	}
+
+	:global(.todo-card.completed strong),
+	:global(.todo-card.completed .todo-copy span) {
+		text-decoration: line-through;
+		text-decoration-thickness: 2px;
+		text-decoration-color: color-mix(
+			in oklab,
+			var(--success) 80%,
+			var(--foreground)
+		);
+	}
+
+	:global(.todo-card.failed) {
+		border-color: color-mix(in oklab, var(--error) 72%, transparent);
+	}
+
+	:global(.activity-item) {
+		animation: rise 0.2s ease-out;
+	}
+
+	:global(.activity-item time) {
+		float: right;
+		color: var(--muted-foreground);
+		font-family:
+			ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+		font-size: 0.68rem;
+	}
+
+	@keyframes shimmer {
+		from {
+			background-position: 0% 50%;
+		}
+		to {
+			background-position: 220% 50%;
+		}
+	}
+
+	@keyframes spin {
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
+	@keyframes rise {
+		from {
+			opacity: 0;
+			transform: translateY(0.4rem);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@media (max-width: 640px) {
+		:global(.message),
+		:global(.message.human) {
+			grid-template-columns: 1fr;
+		}
+
+		:global(.avatar) {
+			display: none;
+		}
+	}
 </style>
