@@ -1,10 +1,9 @@
 """Agente planner: interpreta pedidos DevOps y produce TODOs seguros."""
 
+from collections.abc import Sequence
 from typing import Literal, cast
 
 from langchain.agents import AgentState, create_agent
-from collections.abc import Sequence
-
 from langchain_core.messages import AnyMessage
 from langchain_core.runnables import RunnableConfig
 from langchain_openai import ChatOpenAI
@@ -76,7 +75,7 @@ async def run_planner_agent(
     """Ejecuta el planner."""
 
     model = ChatOpenAI(
-        model="openai/gpt-oss-120b",
+        model="minimax/minimax-m3",
         api_key=settings.NOVITA_API_KEY,
         base_url=settings.NOVITA_BASE_URL,
         temperature=0,

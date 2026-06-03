@@ -13,7 +13,7 @@ El foco del challenge es planificacion, ejecucion, manejo de errores, trazabilid
 - Backend: Python, FastAPI, LangChain, LangGraph, Pydantic y Typer.
 - Tool responses: usar strings en formato TOON con `python-toon` para entregar resultados compactos y faciles de consumir por agentes.
 - LLM provider: Novita AI via API compatible con OpenAI.
-- Planner y summary: `openai/gpt-oss-120b`.
+- Planner y summary: `minimax/minimax-m3`.
 - Executor: `zai-org/glm-5.1`.
 - Web: Astro estatico, sin SSR ni islands, deployable en Cloudflare Pages.
 - API publica esperada: `https://patagonia.luka.software`.

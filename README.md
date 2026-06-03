@@ -50,7 +50,7 @@ flowchart LR
 
 #### Tooling en uso
 
-El backend usa el ecosistema de LangChain para modelar agentes y tools, LangGraph para orquestar el flujo con estado explícito y LangSmith para trazabilidad cuando se configuran las variables de tracing. Novita AI se usa mediante una API compatible con OpenAI: `openai/gpt-oss-120b` corre en planner y summary por su foco en interpretación/síntesis, mientras que `zai-org/glm-5.1` corre en executor por su rol de selección de tools y seguimiento de pasos.
+El backend usa el ecosistema de LangChain para modelar agentes y tools, LangGraph para orquestar el flujo con estado explícito y LangSmith para trazabilidad cuando se configuran las variables de tracing. Novita AI se usa mediante una API compatible con OpenAI: `minimax/minimax-m3` corre en planner y summary por su foco en interpretación/síntesis, mientras que `zai-org/glm-5.1` corre en executor por su rol de selección de tools y seguimiento de pasos.
 
 ##### Qué mejoraría con más tiempo
 

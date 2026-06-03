@@ -50,7 +50,7 @@ async def run_summary_agent(
     """Genera un resumen final tomando el historial como unica fuente de verdad."""
 
     model = ChatOpenAI(
-        model="openai/gpt-oss-120b",
+        model="minimax/minimax-m3",
         api_key=settings.NOVITA_API_KEY,
         base_url=settings.NOVITA_BASE_URL,
         temperature=0,
